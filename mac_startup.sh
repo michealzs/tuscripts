@@ -29,7 +29,7 @@ fi
 applications=("tmux" "virtualbox" "vagrant" "firefox" "google-chrome" "sublime-text" "wireshark" "--cask burp-suite" "--cask pycharm")
 for app in "${applications[@]}"; do
     echo "Installing $app..."
-    brew install --cask $app
+    brew install $app
     if [[ $? -ne 0 ]]; then
         echo "Failed to install $app."
         exit 1
