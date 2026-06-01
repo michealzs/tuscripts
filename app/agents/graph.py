@@ -34,6 +34,13 @@ class DataOpsAgent:
         return create_react_agent(self._llm(), build_tools())
 
     def _llm(self):
+        if self.settings.llm_provider == "deepseek":
+            from langchain_deepseek import ChatDeepSeek
+
+            return ChatDeepSeek(
+                model=self.settings.chat_model,
+                api_key=self.settings.deepseek_api_key,
+            )
         if self.settings.llm_provider == "anthropic":
             from langchain_anthropic import ChatAnthropic
 
@@ -70,7 +77,7 @@ class DataOpsAgent:
         sources = [str(h["metadata"].get("document_id", "")) for h in hits]
         lines = [
             "LLM provider not configured — returning matching document excerpts. "
-            "Set OPENAI_API_KEY (or ANTHROPIC_API_KEY) for full answers."
+            "Set DEEPSEEK_API_KEY (or OPENAI_API_KEY/ANTHROPIC_API_KEY) for full answers."
         ]
         if hits:
             for h in hits:

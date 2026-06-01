@@ -37,7 +37,7 @@ exposed both as an HTTP endpoint and as a LangGraph agent tool.
 ## Run it
 
 ```bash
-cp .env.example .env          # optionally add OPENAI_API_KEY for full /chat
+cp .env.example .env          # optionally add DEEPSEEK_API_KEY for full /chat
 docker compose up -d --build
 curl -X POST localhost:8000/ingest -H 'content-type: application/json' \
      -d '{"title":"Q1","content":"Training completion reached 92% in Q1.","source":"report"}'
@@ -55,8 +55,7 @@ Local dev: `make install && make test && make run`.
 
 Runs end-to-end with no secrets: the excel-diff and careacademy tools work
 directly; embeddings and the vector store fall back to offline implementations,
-and `/chat` returns matching document excerpts. Add `OPENAI_API_KEY` (or
-`ANTHROPIC_API_KEY`) for conversational answers and Langfuse/LangSmith keys for
+and `/chat` returns matching document excerpts. Add `DEEPSEEK_API_KEY` (or `OPENAI_API_KEY` / `ANTHROPIC_API_KEY`) for conversational answers and Langfuse/LangSmith keys for
 tracing.
 
 ## Terraform
